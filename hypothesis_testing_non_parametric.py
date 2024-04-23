@@ -21,6 +21,7 @@ def calc_KruskalWallis(groups_set):
     # group3 = [11, 12, 13, 14, 15]
 
     # 执行Kruskal-Wallis H检验
+    # Kruskal-Wallis H 检验用于比较三个或以上独立样本的中位数是否相同，也称为方差分析的非参数替代方法
     statistic, p_value = kruskal(*groups_set)
 
     # 打印结果
@@ -32,8 +33,13 @@ def calc_KruskalWallis(groups_set):
 def calc_wilcoxon(group1,group2):
     # 执行wilcoxon 检验
     if len(group1) == len(group2):
+        # Wilcoxon Signed-Rank Test(威尔科克森符号秩检验)
+        # 用来进行配对样品的非参数检验
         result = wilcoxon(group1,group2,alternative='two-sided')
     else:
+        # Mann–Whitney U-test （曼-惠特尼U检验）
+        # Mann-Whitney-Wilcoxon Test
+        # 用来检验两组独立样品是否来自两组不同的样品。
         result = mannwhitneyu(group1,group2,alternative='two-sided')
     
     statistic = result.statistic
